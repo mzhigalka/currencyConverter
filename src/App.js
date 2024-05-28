@@ -1,17 +1,17 @@
-import React from 'react';
-import { Block } from './Block';
-import './index.scss';
+import React from "react";
+import { Block } from "./Block";
+import "./index.scss";
 
 function App() {
-  const [fromCurrency, setFromCurrency] = React.useState('USD');
-  const [toCurrency, setToCurrency] = React.useState('UAH');
+  const [fromCurrency, setFromCurrency] = React.useState("USD");
+  const [toCurrency, setToCurrency] = React.useState("UAH");
   const [fromPrice, setFromPrice] = React.useState(1);
-  const [toPrice, setToPrice] = React.useState('');
-  
+  const [toPrice, setToPrice] = React.useState("");
+
   const ratesRef = React.useRef({});
- 
+
   React.useEffect(() => {
-    fetch('https://www.cbr-xml-daily.ru/latest.js')
+    fetch("https://www.cbr-xml-daily.ru/latest.js")
       .then((res) => res.json())
       .then((json) => {
         ratesRef.current = json.rates;
@@ -19,7 +19,7 @@ function App() {
       })
       .catch((err) => {
         console.warn(err);
-        alert('Не удалось получить информацию');
+        alert("Не удалось получить информацию");
       });
   }, []);
 
@@ -31,7 +31,8 @@ function App() {
     setFromPrice(value);
   };
   const onChangeToPrice = (value) => {
-    const result = (ratesRef.current[fromCurrency] / ratesRef.current[toCurrency]) * value; 
+    const result =
+      (ratesRef.current[fromCurrency] / ratesRef.current[toCurrency]) * value;
 
     setFromPrice(result.toFixed(3));
     setToPrice(value);
@@ -43,17 +44,17 @@ function App() {
   React.useEffect(() => {
     onChangeToPrice(toPrice);
   }, [toCurrency]);
-  
+
   return (
     <div className="App">
-      <Block 
-        value={fromPrice} 
+      <Block
+        value={fromPrice}
         currency={fromCurrency}
-        onChangeCurrency={setFromCurrency} 
+        onChangeCurrency={setFromCurrency}
         onChangeValue={onChangeFromPrice}
       />
-      <Block 
-        value={toPrice} 
+      <Block
+        value={toPrice}
         currency={toCurrency}
         onChangeCurrency={setToCurrency}
         onChangeValue={onChangeToPrice}
