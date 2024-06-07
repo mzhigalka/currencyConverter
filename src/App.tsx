@@ -3,6 +3,7 @@ import "./scss/index.scss";
 import React from "react";
 
 function App() {
+  const [popupOpen, setPopupOpen] = React.useState<boolean[]>([false, false]);
   const [fromCurrency, setFromCurrency] = React.useState<string>("USD");
   const [toCurrency, setToCurrency] = React.useState<string>("UAH");
   const [fromPrice, setFromPrice] = React.useState<number>(1);
@@ -45,6 +46,14 @@ function App() {
     onChangeToPrice(toPrice);
   }, [toCurrency]);
 
+  const togglePopup = (index: number) => {
+    setPopupOpen((prevStates) => {
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];
+      return newStates;
+    });
+  };
+
   return (
     <div className="App">
       <Block
@@ -52,12 +61,16 @@ function App() {
         currency={fromCurrency}
         onChangeValue={onChangeFromPrice}
         onChangeCurrency={setFromCurrency}
+        togglePopup={() => togglePopup(0)}
+        isPopupOpen={popupOpen[0]}
       />
       <Block
         value={toPrice}
         currency={toCurrency}
         onChangeValue={onChangeToPrice}
         onChangeCurrency={setToCurrency}
+        togglePopup={() => togglePopup(1)}
+        isPopupOpen={popupOpen[1]}
       />
     </div>
   );
