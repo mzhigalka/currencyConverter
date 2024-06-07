@@ -13,8 +13,8 @@ body {
 .App {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-column-gap: 30px;
-  width: 800px;
+  grid-column-gap: 40px;
+  width: 850px;
   margin: 100px auto;
   background-color: #fff;
   padding: 30px;
@@ -76,6 +76,21 @@ body {
         width: 16px;
         height: 16px;
       }
+    }
+  }
+
+  .extra-currencies {
+    min-width: 75px;
+
+    .popup {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 130px;
+      background-color: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      border-radius: 0px 5px 5px 5px;
+      z-index: 1000;
     }
   }
 }
