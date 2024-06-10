@@ -14,12 +14,18 @@ body {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 40px;
-  width: 850px;
+  max-width: 850px;
   margin: 100px auto;
   background-color: #fff;
   padding: 30px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   border-radius: 15px;
+
+  @media (max-width: 874px) {
+    grid-template-columns: repeat(1, 2fr);
+    gap: 40px;
+    margin: 30px;
+  }
 }
 
 .block {
@@ -44,6 +50,10 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   overflow: hidden;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+  }
 
   li {
     display: inline-flex;
