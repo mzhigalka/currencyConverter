@@ -1,7 +1,7 @@
 import Block from "./Block"; 
 import "./scss/index.scss";
 import React from "react";
-
+ 
 function App() {
   const [popupOpen, setPopupOpen] = React.useState<boolean[]>([false, false]);
   const [fromCurrency, setFromCurrency] = React.useState<string>("USD");
