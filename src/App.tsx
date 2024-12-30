@@ -1,5 +1,5 @@
 import Block from "./Block";  
-import "./scss/index.scss"; 
+import "./scss/index.scss";  
 import React from "react";
  
 function App() {
